@@ -1,5 +1,16 @@
 package com.pp.server.thread;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
+
+import javax.validation.constraints.AssertTrue;
+
+import junit.framework.Assert;
+
 public class BloomFilter {
 	private int arraySize;
 	
@@ -85,7 +96,45 @@ public class BloomFilter {
 	}
 	
 	public static void main(String args[]) {
+
+//		ReentrantLock reentrantLock = new ReentrantLock();
+//		ConcurrentHashMap<String, Object> concurrentHashMap = new ConcurrentHashMap<>();
+//		long start = System.currentTimeMillis();
+//		BloomFilter bloomFilter = new BloomFilter(100000);
+//		for(int i =0; i<100000;i++)
+//		{
+//			bloomFilter.add(i+"");
+//		}
 		
+		Map<String, Object> testMap = new HashMap<>();
+		
+		testMap.put("1A", "test1");
+		testMap.put("2A", "test2");
+		testMap.put("3A", "test3");
+		testMap.put("4A", "test4");
+		testMap.put("5A", "test5");
+		testMap.put("6A", "test6");
+		
+		Iterator<Entry<String, Object>> i = testMap.entrySet().iterator();
+		Entry<String, Object> correctEntry = null;
+		while(correctEntry == null && i.hasNext())
+		{
+			    Entry<String, Object> e = i.next();
+				if ("4A".equals(e.getKey())) {
+					correctEntry = e;
+				}
+		}
+		i.remove();
+		testMap.forEach((key,value)->{
+			System.out.println(key);
+		});
+		/**
+		 * 获取CPU核数
+		 */
+		int cpus = Runtime.getRuntime().availableProcessors();
+		System.out.println(cpus);
+		//boolean result = bloomFilter.check(5644+"");
+		//System.out.println("result:"+result);
 	}
 	
 }
