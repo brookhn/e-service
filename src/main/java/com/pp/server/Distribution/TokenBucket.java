@@ -173,6 +173,7 @@ public class TokenBucket {
                     bufferedWriter.write("token reject ------index:"+ri);
                     System.out.println("token reject ------index:"+ri);
                 }
+                
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
             }
