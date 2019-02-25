@@ -141,6 +141,7 @@ public class TokenBucket {
 
         @Override
         public void run() {
+            System.out.println("begin add Tokens");
             tokenBucket.addTokens(avgFlowRate);
         }
     }
@@ -173,7 +174,7 @@ public class TokenBucket {
                     bufferedWriter.write("token reject ------index:"+ri);
                     System.out.println("token reject ------index:"+ri);
                 }
-                
+
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
             }
