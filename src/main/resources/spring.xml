@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<!-- ====================生命周期==================== -->
+	<!--注意：这里配置的name是张三，age是25,我们会通过beanPostProcessor来修改nage和age -->
+	<bean id="myLifeCycleBean" class="com.pp.server.spring.LifeCycleBean"
+		  destroy-method="myDestroy"
+		  init-method="myInit">
+		<property name="name" value="张三"/>
+		<property name="age" value="25"/>
+	</bean>
+	<bean id="myBeanPostProcessor" class="com.pp.server.spring.LifeCycleBeanPostProcessor"/>
+
+	<bean id="dog" class="com.pp.server.spring.Dog">
+		<!-- 指定构造器参数 index对应构造器中参数的位置 -->
+		<!-- 也可以通过指定参数类型，指定参数名称来注入属性-->
+		<constructor-arg index="0" value="小明"/>
+		<constructor-arg index="1" value="3"/>
+	</bean>
+
+	<!-- =====beanPostProcessor配置begin =====-->
+	<bean id="myBeanPostProcessorOne" class="com.pp.server.spring.MyBeanPostFirst"/>
+	<bean id="myBeanPostProcessorTwo" class="com.pp.server.spring.MyBeanPostTwo"/>
+	<!-- =====beanPostProcessor配置end =====-->
+
+	<!-- =====beanFactoryPostProcessor配置begin =====-->
+	<!--注册第一个后置工厂处理器-->
+	<bean id="myBeanFactoryPostProcessorOne" class="com.pp.server.spring.MyFactoryBeanFirst"/>
+	<!--注册第二个后置工厂处理器-->
+	<bean id="myBeanFactoryPostProcessorTwo" class="com.pp.server.spring.MyFactoryBeanTwo"/>
+	<!-- =====beanFactoryPostProcessor配置end =====-->
+
+</beans>

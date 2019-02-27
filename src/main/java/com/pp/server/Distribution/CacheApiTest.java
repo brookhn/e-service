@@ -13,6 +13,10 @@ import static javax.cache.expiry.Duration.ONE_HOUR;
 public class CacheApiTest {
     public static void main(String args[])
     {
+
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        System.out.println(classLoader+" Thread.currentThread().getContextClassLoader() ");
+
         //resolve a cache manager
         CachingProvider cachingProvider = Caching.getCachingProvider();
         CacheManager cacheManager = cachingProvider.getCacheManager();
