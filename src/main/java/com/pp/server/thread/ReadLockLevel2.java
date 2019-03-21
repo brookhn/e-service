@@ -9,6 +9,7 @@ public class ReadLockLevel2 {
     private int writeRequests = 0;
 
     Map<Thread, Integer> readThreads = new HashMap<>();
+    
 
     private Thread writeThread = null;
 
